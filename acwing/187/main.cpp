@@ -16,10 +16,10 @@ void dfs(int u, int su, int sd) {
     return ;
   }
   int k = 0;
-  while (k < su && up[k] >= h[u]) k++;
+  while (k < su && up[k] >= a[u]) k++;
   if (k < su) {
     int t = up[k];
-    up[k] = a[u]
+    up[k] = a[u];
     dfs(u+1, su, sd);
     up[k] = t;
   }
