@@ -22,8 +22,8 @@ int main() {
   for (int i = 0; i < n; i++) {
     int k = 0;
     while (k < cnt && q[k] < a[i]) k++;
-    if (k == cnt) q[cnt++] = h[i];
-    else q[k] = h[i];
+    if (k == cnt) q[cnt++] = a[i];
+    else q[k] = a[i];
   }
   cout << res << endl;
   cout << cnt << endl;
