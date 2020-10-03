@@ -1,39 +1,82 @@
-// 为了对抗附近恶意国家的威胁，R国更新了他们的导弹防御系统。
+// 题目： 导弹防御系统
+// 思路来源：拦截导弹，DFS，贪心，优先队列
 
-// 一套防御系统的导弹拦截高度要么一直 严格单调 上升要么一直 严格单调 下降。
+// DFS:
+// 搜索顺序：
+// 对每一个导弹，我们考虑放入已有的防御系统，或者开一个新的防御系统
+// 问题1：在能放的情况下，是否优先放入已有的防御系统? 答案：是的，证明略
 
-// 例如，一套系统先后拦截了高度为3和高度为4的两发导弹，那么接下来该系统就只能拦截高度大于4的导弹。
+// 状态表示： 
+// dfs(int t, int su, int sd); // 参数传递状态
+// int up[N], down[N]; // 全局变量传递状态，需要恢复现场
+// 由两个优先队列和当前的导弹序号构成
 
-// 给定即将袭来的一系列导弹的高度，请你求出至少需要多少套防御系统，就可以将它们全部击落。
-// 输入格式
+// 边界： if (u == n) {ans = min(ans, su+sd); return:}
+// 最优化减枝: if (su + sd >= ans) return;
 
-// 输入包含多组测试用例。
+#include <iostream>
+#include <algorithm>
 
-// 对于每个测试用例，第一行包含整数n，表示来袭导弹数量。
+using namespace std;
 
-// 第二行包含n个不同的整数，表示每个导弹的高度。
+const int N = 55;
 
-// 当输入测试用例n=0时，表示输入终止，且该用例无需处理。
+int n;
+int h[N];
+int up[N], down[N];
+int ans;
 
-// 输出格式
+void dfs(int u, int su, int sd)
+{
+    if (su + sd >= ans) return;
+    if (u == n)
+    {
+        ans = min(ans, su + sd);
+        return;
+    }
 
-// 对于每个测试用例，输出一个占据一行的整数，表示所需的防御系统数量。
-// 数据范围
+    int k = 0;
+    while (k < su && up[k] >= h[u]) k ++ ;
+    if (k < su)
+    {
+        int t = up[k];
+        up[k] = h[u];
+        dfs(u + 1, su, sd);
+        up[k] = t;
+    }
+    else
+    {
+        up[k] = h[u];
+        dfs(u + 1, su + 1, sd);
+    }
 
-// 1≤n≤50
+    k = 0;
+    while (k < sd && down[k] <= h[u]) k ++ ;
+    if (k < sd)
+    {
+        int t = down[k];
+        down[k] = h[u];
+        dfs(u + 1, su, sd);
+        down[k] = t;
+    }
+    else
+    {
+        down[k] = h[u];
+        dfs(u + 1, su, sd + 1);
+    }
+}
 
-// 输入样例：
+int main()
+{
+    while (cin >> n, n)
+    {
+        for (int i = 0; i < n; i ++ ) cin >> h[i];
 
-// 5
-// 3 5 2 4 1
-// 0 
+        ans = n;
+        dfs(0, 0, 0);
 
-// 输出样例：
+        cout << ans << endl;
+    }
 
-// 2
-
-// 样例解释
-
-// 对于给出样例，最少需要两套防御系统。
-
-// 一套击落高度为3,4的导弹，另一套击落高度为5,2,1的导弹。
+    return 0;
+}
