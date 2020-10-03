@@ -2,14 +2,9 @@
 // 思路来源： 01背包问题
 
 // f[i][j]: 从前i个物品中选择，总用时不超过j的选择集合;
-// f[i][j] = max(f[i-1][j], f[i-1][j-v[i]] + w[i]);
+// f[i][j] = max(f[i-1][j], f[i-1][j-v[i]] + w[i]) for j >= v[i]
 
-// contribution set: 略
-
-// invalid set存在contribution, 需要加上限制条件
-// if (j-v[i] >= 0)
-
-// invalid value: f[i][j] = 0;
+// invalid value: f[i][j] = -0x3f3f3f3f;
 // initial value: f[0][0] = 0;
 
 #include <iostream>
