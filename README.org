@@ -1,5 +1,13 @@
 # This file should only be words and no images
-* 技巧篇
+
+* 参考书
+1. 《信息学奥赛一本通》
+2. 《算法竞赛进阶指南》（李）
+3. 《算法导论》
+4. 《数据结构》（严）
+5. 《挑战程序设计竞赛》
+
+* 技巧 篇
   程序设计常用的三类基本数据：char[] or string, int(作为整数），int(作为bit数组）
 ** string vs char[]
 1. 需要当作参数传递，选择string
