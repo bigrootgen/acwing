@@ -1,0 +1,20 @@
+* 01背包
+#+BEGIN_SRC c
+#define REP(i, n) for (int i = 0; i < n; i++)
+#define RREP(i, n) for (int i = m; j >= 0; j--)
+REP(i, n) RREP(j, m) if (j >= v[i]) f[j] = max(f[j], f[j-v[i]]+w[i]);
+#+END_SRC
+或者
+#+BEGIN_SRC c
+for (int i = 0; i < n; i++) for (int j = m; j >= v[i]; j--) f[j] = max(f[j], f[j-v[i]]+w[i]);
+#+END_SRC
+* 完全背包
+#+BEGIN_SRC c
+for (int i = 0; i < n; i++) for (int j = v[i]; j <= m; j++) f[j] = max(f[j], f[j-v[i]] + w[i]);
+#END_SRC
+或者
+#+BEGIN_SRC c
+REP(i, n) for (int j = v[i]; j <= m; j++) f[j] = max(f[j], f[j-v[i]] + w[i]);
+#+END_SRC
+* 多重背包
+多重背包可以转化为完全背包问题
