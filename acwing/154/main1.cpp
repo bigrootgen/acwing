@@ -13,7 +13,7 @@ int main() {
     int hh = 0, tt = -1;
     REP(i, n) cin >> a[i];
     REP(i, n) {
-        if (tt >= hh && q[tt] - q[hh] + 1 > k) hh++;
+        if (tt >= hh && i - q[hh] + 1 >= k) hh++;
         while (tt >= hh && a[i] <= a[q[tt]]) tt--;
         q[++tt] = i;
         if (i >= k - 1) cout << a[q[hh]] << " ";
@@ -21,7 +21,7 @@ int main() {
     cout << endl;
     hh = 0, tt = -1;
     REP(i, n) {
-        if (tt >= hh && q[tt] - q[hh] + 1 > k) hh++;
+        if (tt >= hh && i - q[hh] + 1 >= k) hh++;
         while (tt >= hh && a[i] >= a[q[tt]]) tt--;
         q[++tt] = i;
         if (i >= k - 1) cout << a[q[hh]] << " ";

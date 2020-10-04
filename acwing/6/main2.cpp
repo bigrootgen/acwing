@@ -24,7 +24,7 @@ int main() {
         REP(j, a) {
             int hh = 0, tt = -1;
             for (int k = j; k <= m; k+=a) {
-                if (tt >= hh && q[tt] - q[hh] + 1 >= s*a) hh++;
+                if (tt >= hh && k - q[hh] + 1 > s*a) hh++;
                 while (hh <= tt && g[q[tt]] - (q[tt] - j) / a * b <= g[k] - (k-j) / a * b) tt--;
                 q[++tt] = k;
                 f[k] = g[q[hh]] + (k-q[hh]) / a * b;
