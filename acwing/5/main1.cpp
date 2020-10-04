@@ -1,6 +1,3 @@
-// f[i][j] = max(f[i-1][j-k*v[i]] + k*w[i] for k st 0 <= k <= s and k*v[i] <= j) 
-// 将多重背包问题转化为01背包问题
-
 #include <iostream>
 
 #define REP(i, n) for (int i = 0; i < n; i++)
@@ -8,7 +5,7 @@
 
 using namespace std;
 
-const int M =  2010, N = 12010;
+const int N =  1010, M = 12010;
 
 int v[N], w[N];
 int f[M];
